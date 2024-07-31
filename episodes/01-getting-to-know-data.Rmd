@@ -1,0 +1,229 @@
+---
+title: "Getting to know the data"
+teaching: 30
+exercises: 10
+questions:
+- "How do I import data?"
+- "How are the data distributed?"
+- "Are there correlations between variables?"
+objectives: 
+- "Importing data"
+- "getting an overview of data"
+- "how to find metadata"
+- "using plots to explore our data"
+keypoints:
+- "Always start by looking at the data"
+- "Always keep track of the metadata"
+source: Rmd
+---
+
+```{r SETUP_01, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("01-")
+source("../bin/download_data.R")
+library(tidyverse)
+library(GGally)
+library(readxl)
+```
+
+
+## Read in data in R
+
+First we load `tidyverse` which make datamanipulation easier. We also load a 
+package to help us read Excel files:
+```{r, purl=FALSE}
+library(tidyverse)
+library(readxl)
+```
+
+Let us read in the excel spreadsheet we downloaded in preparation, and saved
+in the data folder of our project:
+
+```{r echo = F}
+flightdata <- read_excel("../data/flightdata.xlsx")
+```
+
+
+```{r, purl=FALSE, eval = F}
+flightdata <- read_excel("data/flightdata.xlsx")
+```
+
+
+# Taking a look at the data
+
+Always begin by taking a look at your data!
+
+```{r eval = F}
+flightdata %>% 
+  head() %>% 
+  view()
+```
+
+
+This dataset is pretty big. It is actually so big, that a `view()` of the 
+entire dataset takes about 10 seconds to render. And some of the other
+things we would like to do to it, takes even longer.
+
+Instead of waiting for that, it can be a good idea to work and experiment with
+a smaller part of the dataset, and only use the entirety of the data when we 
+know what we want to do.
+
+One way of doing that would be to use the function `sample_frac` to return a
+random fraction of the dataset:
+
+```{r, eval = F }
+flightdata %>% 
+  sample_frac(0.005) %>% 
+  view()
+```
+
+After taking a quick look at the data, it is time to get some
+statistical insight.
+
+The summary function returns summary statistics on our data:
+```{r}
+summary(flightdata)
+```
+We get an overview of all the data (and the summary function have no problems
+working with even very large datasets). From this we learn a bit about the 
+datatypes in the data, and something about the distribution of the data. 
+
+## Metadata
+
+Metadata is data about the data. 
+Usually we are interested in the provenance of the data. In this case it is
+data on all flights departing New York City i 2013, from the three commercial
+airports, JFK, LGA and EWR.
+The data was originally extracted from the US Bureau of Transportation Statistics,
+and can be found at https://www.transtats.bts.gov/Homepage.asp
+
+The columns of the dataset contains the following data:
+
+* year, month, day Date of departure.
+* dep_time, arr_time Actual departure and arrival times (format HHMM or HMM), local tz.
+* sched_dep_time, sched_arr_time Scheduled departure and arrival times (format HHMM or HMM), local tz.
+* dep_delay, arr_delay Departure and arrival delays, in minutes. Negative times represent early departures/arrivals.
+* carrier Two letter carrier abbreviation. See airlines to get name.
+* flight Flight number.
+* tailnum Plane tail number. See planes for additional metadata.
+* origin, dest Origin and destination. See airports for additional metadata.
+* air_time Amount of time spent in the air, in minutes.
+* distance Distance between airports, in miles.
+* hour, minute Time of scheduled departure broken into hour and minutes.
+* time_hour Scheduled date and hour of the flight as a POSIXct date. Along with origin, can be used to join flights data to weather data.
+
+Always remember to save information about what is actually in your 
+data. 
+
+
+## Let us make a plot
+
+What is the distribution of departure delays? Are there a lot of flights that
+depart on time, and a few that are very delayed?
+
+A histogram is a great way to get a first impression of a particular variable
+in the dataset, so let us make one of those:
+
+```{r}
+flightdata %>% 
+  ggplot(mapping = aes(x = dep_delay)) +
+    geom_histogram()
+```
+A histogram divides the numeric values of the departure delay into "buckets" 
+with a fixed width. It then counts the number of observations in each 
+bucket, and plot a column matching that count. 
+
+Note the warning! By default `ggplot` divides the observations into 30 buckets.
+30 buckets are almost never the right number, so adjust it by adding eg `bins = 50`
+to `geom_histogram()`.
+
+> ## What is the right number of bins?
+>
+> The right number of bins is the number of bins that show what
+> we want to show about the data. 
+> Tips on how to choose a number of bins can be found here:
+> https://kubdatalab.github.io/forklaringer/12-histogrammer/index.html
+>
+{: .callout}
+
+
+
+## Let us make another plot!
+
+After looking at the distrubtion of observations in the different variables, we might want to explore correlations between them.
+
+What, for example, is the connection between delays of departure vs. arrival for these 
+flights?
+
+```{r warning = F}
+flightdata %>% 
+  sample_frac(.005) %>% 
+  ggplot(mapping = aes( x = dep_delay, y = arr_delay)) +
+  geom_point()
+```
+We pipe the data to `sample_frac` in order to look at 0.5% of the data. 
+The result of that is piped to the `ggplot` function, where we specify that 
+the data should be `mapped` to the plot, by placing the values of the delay of 
+departure on the X-axis, and the delay of arrival on the Y-axis. 
+
+That in itself is not very interesting, so we add something to the plot:
+`+ geom_point()`, specifying that we would like the data plotted as points.
+
+This is an example of a case where it can be a good idea to work on a 
+smaller dataset. Plotting the entirety of the data takes about 40 times
+longer than plotting 0.5% of the data.
+
+When we explore data, we often want to look at correlations in the data. 
+If one variable falls, does another fall? Or rise?
+
+Making these kinds of plots can help us identify interesting correlations, but
+it is cumbersome to make a lot of them. So that can be automated.
+
+The build-in `plot` function in R will take a dataframe, and plot each 
+individual column against every other column. 
+
+To illustrate this we cut down the dataset some more, looking at an even smaller
+subset of the rows, and eliminating some of the columns. To get a better plot
+without a lot of warnings, we also remove missing values from the dataset:
+
+```{r}
+flightdata %>% 
+  na.omit() %>% 
+  sample_frac(.0001) %>% 
+  select(-c(year, carrier, flight, tailnum, hour, minute, time_hour, origin, dest)) %>% 
+  plot()
+```
+This gives us a good first indication of how the different variables varies 
+together. The name of this type of plot is `correllogram` because it shows
+all the correlations between the selected variables.
+
+## Bringing distrubtion and correlation together
+
+A better, or perhaps just prettier, way of doing the above is to use the library
+`GGally`, which have a fancier version, showing both the distribution of values
+in the different columns, but also the correlation between the variables.
+
+Begin by installing `GGally`:
+```{r eval = F}
+install.packages("GGally")
+```
+
+Now we can plot:
+
+```{r}
+library(GGally)
+flightdata %>% 
+  sample_frac(.0001) %>% 
+  select(-c(year, carrier, flight, tailnum, hour, minute, time_hour, origin, dest)) %>% 
+  na.omit() %>% 
+  ggpairs(progress = F)
+```
+
+We need to cut down the number of observations again - the scatterplots would
+be unreadable otherwise. The classical corellogram is enriched with a densityplot
+in the diagonal, basically a very smooth histogram, and the correlation coefficients
+above the diagonal.
+
+
+
+{% include links.md %}

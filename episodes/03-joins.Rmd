@@ -1,0 +1,145 @@
+---
+title: "Joining data"
+teaching: 20
+exercises: 10
+questions:
+- "How do I import data from other sheets in a spreadsheet?"
+- "How do I enrich tables with additional data?"
+- "What is a join?"
+objectives:
+- "Learn how to import data from sheet number 2 (and 3 etc) in spreadsheets"
+- "Learn how to join data frames"
+keypoints:
+- "Data is often organized in separate tables, joining them can enrich the data we are analysing"
+source: Rmd
+---
+
+
+```{r SETUP_03, include = FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("03-")
+source("../bin/download_data.R")
+library(dplyr)
+library(tidyverse)
+library(readxl)
+flightdata <- read_excel("../data/flightdata.xlsx", na = "NULL")
+
+summary_delays <- flightdata %>% 
+  group_by(carrier) %>% 
+  summarise(avg_dep_delay = mean(dep_delay, na.rm = T),
+            med_dep_delay = median(dep_delay, na.rm = T),
+            sd_dep_delay = sd(dep_delay, na.rm = T),
+            max_dep_delay = max(dep_delay, na.rm = T),
+            min_dep_delay = min(dep_delay, na.rm  =T),
+            iqr = IQR(dep_delay, na.rm = T)) %>% 
+  arrange(avg_dep_delay)
+  
+```
+
+## What is the actual name of the best airline?
+
+It is nice to be able to identify the airline that is most on time. 
+But we have carrier codes, not the actual names of them.
+
+How do we get that?
+
+### Reading another sheet in a spreadsheet
+
+Our spreadsheet contains more that one sheet. The second sheet contains
+the names and carrier codes of the relevant airlines.
+
+We can read sheet number 2 from the Excelfile, by giving `read_excel()` a
+second argument, specifying the sheet we want:
+
+```{r eval = T, echo = F, message=F, warning=F}
+carriers <- read_excel("../data/flightdata.xlsx", sheet = 2)
+```
+
+```{r eval = F}
+carriers <- read_excel("data/flightdata.xlsx", sheet = 2)
+```
+
+```{r}
+carriers
+```
+
+We now have a second data frame, containing the names of the carriers. And we have
+a data frame containing the average delays
+
+```{r}
+summary_delays
+```
+
+what we would like is something like this:
+```{r echo = F, message = F, warning=F}
+summary_delays %>% left_join(carriers) %>% relocate(name, .after = carrier)
+```
+
+What we want to do is joining the two dataframes, so we enrich the original
+dataframe containing summary statistics on departure delays, 
+with the name matching the carrier code.
+
+Several different types of joins exist. The one we need here is `left_join()`
+
+![left_join returns all rows in the left dataframe, enriched with data from the rigth](../fig/left-join.gif). 
+
+With a `left_join()` we join the two dataframes. All rows in the left dataframe
+are returned, enriched with the matching values from the columns in the right
+dataframe. Rows in the left dataframe, that does not have a matching row in
+the right dataframe will get NA-values.
+
+Let us do that!
+```{r}
+summary_delays %>% 
+  left_join(carriers) %>% 
+  relocate(name, .after = carrier) 
+```
+
+The relocate function is used to change the order of the columns.
+
+## There are other join functions
+
+`left_join` is an example of a mutating join. Like the `mutate` function
+left_join introduces new variables, new columns, in our dataframe.
+
+### Mutating joins
+
+The closes cousin of the `left_join` funtion is the `right_join`. 
+
+The left_join returns all rows on the left hand side of the join,
+augmented with values from the dataframe on the right hand side of the
+join, based on matching values.
+
+The right_join function returns all rows on the right hand side of the join. Depending on the flow of our code, we choose the variant that best suit our purpose.
+
+`inner_join` keeps only the rows on the left hand side of the join, that have matching values in the dataframe on the right hand side of the join. Whereas `left_join` and `right_join` keeps all rows, and add NA values where there is no match, `inner_join` only returns rows that have a match. 
+
+`full_join` on the other hand keeps all rows from both dataframes being joined. Any observations that does not have a match in the other dataframe, will have NA values added.
+
+
+### Filtering joins
+
+These joins will filter rows from the left hand dataframe, based on the
+presence or absence of matches in the right hand dataframe.
+
+`semi_join` returns all rows that have a match on the right hand side of the join. But not those that do not have a match.
+
+`anti_join` returns all rows, that *do not* have a match on the rigth hand side of the join.
+
+## Can we plot the average delays with carrier names?
+
+Yes we can!
+
+We take the summary_delays dataframe, containing the average delays,
+and join it with the data on carrier names. We do not have to specify the column on which we are joining, since there is only one shared column name. We then pipe that result to ggplot, where we specify that we would like the delay to be on the x-axis, and the name of the carrier on the y-axis:
+
+```{r}
+summary_delays %>% 
+  left_join(carriers) %>% 
+  ggplot(mapping = aes(x = avg_dep_delay, y = name)) +
+    geom_col()
+  
+```
+
+
+{% include links.md %}
