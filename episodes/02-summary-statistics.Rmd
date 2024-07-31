@@ -1,0 +1,104 @@
+---
+title: "Exploring with summary statistics"
+teaching: 30
+exercises: 10
+questions:
+- "How do I get means, medians, IQRs and other summary statistics on my data?"
+- "How do I get summary statistics for different groups in my data?"
+objectives:
+- "Learn the summarise and group_by functions for efficient summary statistics."
+keypoints:
+- "Summary statistics tells us about the distribution of data"
+source: Rmd
+---
+
+
+
+```{r SETUP_02, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("02-")
+library(tidyverse)
+library(readxl)
+source("../bin/download_data.R")
+flightdata <- read_excel("../data/flightdata.xlsx")
+```
+
+
+
+## Summary statistics
+
+What is the average delay on the departure of these flights?
+
+Most of the functions we use for these operations comes from the library
+dplyr, which is part of the tidyverse package.
+
+The function to get summary statistics (average/mean, median, standard deviation etc)
+from dataframes is `summarise`. It works like this, remember to add `na.rm = T`
+to handle missing values:
+
+```{r}
+flightdata %>% 
+  summarise(avg_dep_delay = mean(dep_delay, na.rm = T),
+            med_dep_delay = median(dep_delay, na.rm = T),
+            sd_dep_delay = sd(dep_delay, na.rm = T),
+            max_dep_delay = max(dep_delay, na.rm = T),
+            min_dep_delay = min(dep_delay, na.rm  =T),
+            iqr = IQR(dep_delay, na.rm = T))
+```
+
+> ## IQR
+> Lining up all values of departure delay in order from the lowest to the highest,
+> we can split up the observations in quartiles, each containing 25% of the 
+> observations. The Inter Quartile Range, tells us the range in which the middle
+> 50% of the observations are. It is a measure of the spread of the observations
+> around the median.
+{: callout}
+
+## Which airline is most delayed?
+
+Adding `group_by()` we can get the summary statistics for all 
+airlines:
+
+```{r}
+flightdata %>% 
+  group_by(carrier) %>% 
+  summarise(avg_dep_delay = mean(dep_delay, na.rm = T),
+            med_dep_delay = median(dep_delay, na.rm = T),
+            sd_dep_delay = sd(dep_delay, na.rm = T),
+            max_dep_delay = max(dep_delay, na.rm = T),
+            min_dep_delay = min(dep_delay, na.rm  =T),
+            iqr = IQR(dep_delay, na.rm = T))
+```
+
+A second step would be to sort the carriers by the average departure delay. The `arrange()` function does this:
+
+```{r}
+flightdata %>% 
+  group_by(carrier) %>% 
+  summarise(avg_dep_delay = mean(dep_delay, na.rm = T),
+            med_dep_delay = median(dep_delay, na.rm = T),
+            sd_dep_delay = sd(dep_delay, na.rm = T),
+            max_dep_delay = max(dep_delay, na.rm = T),
+            min_dep_delay = min(dep_delay, na.rm  =T),
+            iqr = IQR(dep_delay, na.rm = T)) %>% 
+  arrange(avg_dep_delay)
+```
+
+The carrier "US" does best. What carrier is that actually?
+
+Before doing that, let us save the result in an object:
+```{r}
+summary_delays <- flightdata %>% 
+  group_by(carrier) %>% 
+  summarise(avg_dep_delay = mean(dep_delay, na.rm = T),
+            med_dep_delay = median(dep_delay, na.rm = T),
+            sd_dep_delay = sd(dep_delay, na.rm = T),
+            max_dep_delay = max(dep_delay, na.rm = T),
+            min_dep_delay = min(dep_delay, na.rm  =T),
+            iqr = IQR(dep_delay, na.rm = T)) %>% 
+  arrange(avg_dep_delay)
+```
+
+Next up - how to figure out the name of the carrier "US".
+
+{% include links.md %}
