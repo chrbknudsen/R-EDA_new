@@ -10,7 +10,7 @@ exercises: 10
 - "How do I get summary statistics for different groups in my data?"
 ::::
 
-::::objectives:
+::::objectives
 - "Learn the summarise and group_by functions for efficient summary statistics."
 ::::
 
@@ -102,6 +102,6 @@ summary_delays <- flightdata %>%
 
 Next up - how to figure out the name of the carrier "US".
 
-::::keypoints:
+::::keypoints
 - "Summary statistics tells us about the distribution of data"
 ::::
