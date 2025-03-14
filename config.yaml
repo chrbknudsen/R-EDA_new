@@ -64,6 +64,7 @@ episodes:
 - summary-statistics.Rmd
 - joins.Rmd
 - boxplots.Rmd
+- whats-next.Rmd
 
 # Information for Learners
 learners:
