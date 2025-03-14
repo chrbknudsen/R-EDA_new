@@ -63,6 +63,7 @@ episodes:
 - getting-to-know-data.Rmd
 - summary-statistics.Rmd
 - joins.Rmd
+- boxplots.Rmd
 
 # Information for Learners
 learners:
