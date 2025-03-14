@@ -61,6 +61,7 @@ contact: 'kubdatalab@kb.dk'
 episodes:
 - introduction.Rmd
 - getting-to-know-data.Rmd
+- summary-statistics.Rmd
 
 # Information for Learners
 learners:
