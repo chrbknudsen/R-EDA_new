@@ -8,10 +8,10 @@
 # lc: Library Carpentry
 # cp: Carpentries (to use for instructor training for instance)
 # incubator: The Carpentries Incubator
-carpentry: 'incubator'
+carpentry: 'lc'
 
 # Overall title for pages.
-title: 'Lesson Title'
+title: 'Eksplorativ Data analysis with R'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: '2024-07-31'
@@ -27,13 +27,13 @@ life_cycle: 'pre-alpha'
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/chrbknudsen/R-EDA_new'
+source: 'https://github.com/KUBDatalab/R-EDA_new'
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'team@carpentries.org'
+contact: 'kubdatalab@kb.dk'
 
 # Navigation ------------------------------------------------
 #
