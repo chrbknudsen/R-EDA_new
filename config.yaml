@@ -62,6 +62,7 @@ episodes:
 - introduction.Rmd
 - getting-to-know-data.Rmd
 - summary-statistics.Rmd
+- joins.Rmd
 
 # Information for Learners
 learners:
