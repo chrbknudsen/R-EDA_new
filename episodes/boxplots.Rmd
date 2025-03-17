@@ -2,29 +2,25 @@
 title: "Boxplots and linear regressions"
 teaching: 80
 exercises: 35
-questions:
-  - "How do I make a Boxplot?"
-  - "How do I make a linear regression?"
-objectives:
-  - "Learn how to visualise the distribution of your data using boxplots"
-  - "Learn how to investigate correlations between variables using linear regressions"
-keypoints:
-  - "Boxplots are useful for comparing distributions"
-  - "Boxplots can hide multiple distributions in a variable"
-  - "Density plots can reveal multiple distributions in variables"
-  - "Correlations between variables can be quantified using linear models"
-source: Rmd
-math: yes
 ---
 
+::::questions
+  - "How do I make a Boxplot?"
+  - "How do I make a linear regression?"
+::::
+
+::::objectives
+  - "Learn how to visualise the distribution of your data using boxplots"
+  - "Learn how to investigate correlations between variables using linear regressions"
+::::  
+  
+
+
 ```{r, include=FALSE}
-source("../bin/chunk-options.R")
-knitr_fig_path("04-")
-source("../bin/download_data.R")
 library(tidyverse)
 library(readxl)
-flightdata <- read_excel("../data/flightdata.xlsx")
-carriers <- read_excel("../data/flightdata.xlsx", sheet = 2)
+flightdata <- read_excel("data/flightdata.xlsx")
+carriers <- read_excel("data/flightdata.xlsx", sheet = 2)
 
 ```
 
@@ -173,17 +169,18 @@ summary(model)
 ```
 Linear regressions are used to find connections between data. We might be building a model, where we try to figure out what causes delays in this data. Or find the correlation between taking a specific drug and recovering from a disease. 
 
-> ## Correlation does not imply causation!
->
-> Even if you find a strong correlation between two variables in
-> your data, you have not necessarily found an explanation. 
-> There is a very strong correlation between how much it rains
-> in Hillsborough County in Florida, USA, and how much money
-> The United Kingdom spends on its military. 
-> That does not imply that spending more money on guns in the UK
-> will make it rain more in Florida.
->
-{: .caution}
+
+::::caution
+## Correlation does not imply causation!
+Even if you find a strong correlation between two variables in
+your data, you have not necessarily found an explanation. 
+There is a very strong correlation between how much it rains
+in Hillsborough County in Florida, USA, and how much money
+The United Kingdom spends on its military. 
+That does not imply that spending more money on guns in the UK
+will make it rain more in Florida.
+
+::::
 
 The lm() function can handle more than one explanatory variable.
 
@@ -202,4 +199,9 @@ summary(model_3)
 ```
 
 
-{% include links.md %}
+::::keypoints
+  - "Boxplots are useful for comparing distributions"
+  - "Boxplots can hide multiple distributions in a variable"
+  - "Density plots can reveal multiple distributions in variables"
+  - "Correlations between variables can be quantified using linear models"
+::::

@@ -2,25 +2,25 @@
 title: "Exploring with summary statistics"
 teaching: 30
 exercises: 10
-questions:
+---
+
+
+::::questions
 - "How do I get means, medians, IQRs and other summary statistics on my data?"
 - "How do I get summary statistics for different groups in my data?"
-objectives:
+::::
+
+::::objectives
 - "Learn the summarise and group_by functions for efficient summary statistics."
-keypoints:
-- "Summary statistics tells us about the distribution of data"
-source: Rmd
----
+::::
+
 
 
 
 ```{r SETUP_02, include=FALSE}
-source("../bin/chunk-options.R")
-knitr_fig_path("02-")
 library(tidyverse)
 library(readxl)
-source("../bin/download_data.R")
-flightdata <- read_excel("../data/flightdata.xlsx")
+flightdata <- read_excel("data/flightdata.xlsx")
 ```
 
 
@@ -46,13 +46,14 @@ flightdata %>%
             iqr = IQR(dep_delay, na.rm = T))
 ```
 
-> ## IQR
-> Lining up all values of departure delay in order from the lowest to the highest,
-> we can split up the observations in quartiles, each containing 25% of the 
-> observations. The Inter Quartile Range, tells us the range in which the middle
-> 50% of the observations are. It is a measure of the spread of the observations
-> around the median.
-{: callout}
+::::callout
+## IQR
+Lining up all values of departure delay in order from the lowest to the highest,
+we can split up the observations in quartiles, each containing 25% of the 
+observations. The Inter Quartile Range, tells us the range in which the middle
+50% of the observations are. It is a measure of the spread of the observations
+around the median.
+::::
 
 ## Which airline is most delayed?
 
@@ -101,4 +102,6 @@ summary_delays <- flightdata %>%
 
 Next up - how to figure out the name of the carrier "US".
 
-{% include links.md %}
+::::keypoints
+- "Summary statistics tells us about the distribution of data"
+::::

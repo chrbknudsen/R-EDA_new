@@ -3,15 +3,13 @@ layout: lesson
 root: .
 ---
 
-Please note: These pages are under construction! That is a permanent condition, but at the moment they are under more construction than they will ever be.
-
 The aim of KUB-Datalab is to teach students, teachers and researchers
 basic concepts, skills and tools for working with data so they can
 get more done in less time. And with less pain.
 
 This is the next step after an introduction to R for complete beginners. 
 We assume that you have some knowledge of R, equivalent to the material
-covered in our [introductory course](https://kubdatalab.github.io/beginning-R/).
+covered in our [introductory course](https://kubdatalab.github.io/R-intro/).
 
 In this workshop we investigate a dataset together, and let our curiosity guide
 us in analysing and visualizing the data, using both elementary statistical

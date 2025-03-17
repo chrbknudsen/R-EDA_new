@@ -2,27 +2,26 @@
 title: "Joining data"
 teaching: 20
 exercises: 10
-questions:
+---
+
+::::questions
 - "How do I import data from other sheets in a spreadsheet?"
 - "How do I enrich tables with additional data?"
 - "What is a join?"
-objectives:
+::::
+
+::::objectives
 - "Learn how to import data from sheet number 2 (and 3 etc) in spreadsheets"
 - "Learn how to join data frames"
-keypoints:
-- "Data is often organized in separate tables, joining them can enrich the data we are analysing"
-source: Rmd
----
+::::
+
 
 
 ```{r SETUP_03, include = FALSE}
-source("../bin/chunk-options.R")
-knitr_fig_path("03-")
-source("../bin/download_data.R")
 library(dplyr)
 library(tidyverse)
 library(readxl)
-flightdata <- read_excel("../data/flightdata.xlsx", na = "NULL")
+flightdata <- read_excel("data/flightdata.xlsx", na = "NULL")
 
 summary_delays <- flightdata %>% 
   group_by(carrier) %>% 
@@ -81,7 +80,7 @@ with the name matching the carrier code.
 
 Several different types of joins exist. The one we need here is `left_join()`
 
-![left_join returns all rows in the left dataframe, enriched with data from the rigth](../fig/left-join.gif). 
+![left_join returns all rows in the left dataframe, enriched with data from the rigth](fig/left-join.gif). 
 
 With a `left_join()` we join the two dataframes. All rows in the left dataframe
 are returned, enriched with the matching values from the columns in the right
@@ -142,4 +141,7 @@ summary_delays %>%
 ```
 
 
-{% include links.md %}
+::::keypoints
+- "Data is often organized in separate tables, joining them can enrich the data we are analysing"
+::::
+

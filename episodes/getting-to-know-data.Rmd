@@ -2,25 +2,24 @@
 title: "Getting to know the data"
 teaching: 30
 exercises: 10
-questions:
+---
+
+::::questions
 - "How do I import data?"
 - "How are the data distributed?"
 - "Are there correlations between variables?"
-objectives: 
+::::
+
+::::objectives
 - "Importing data"
 - "getting an overview of data"
 - "how to find metadata"
 - "using plots to explore our data"
-keypoints:
-- "Always start by looking at the data"
-- "Always keep track of the metadata"
-source: Rmd
----
+::::
+
+
 
 ```{r SETUP_01, include=FALSE}
-source("../bin/chunk-options.R")
-knitr_fig_path("01-")
-source("../bin/download_data.R")
 library(tidyverse)
 library(GGally)
 library(readxl)
@@ -137,14 +136,15 @@ Note the warning! By default `ggplot` divides the observations into 30 buckets.
 30 buckets are almost never the right number, so adjust it by adding eg `bins = 50`
 to `geom_histogram()`.
 
-> ## What is the right number of bins?
->
-> The right number of bins is the number of bins that show what
-> we want to show about the data. 
-> Tips on how to choose a number of bins can be found here:
-> https://kubdatalab.github.io/forklaringer/12-histogrammer/index.html
->
-{: .callout}
+::::callout
+## What is the right number of bins?
+
+The right number of bins is the number of bins that show what
+we want to show about the data. 
+
+
+
+::::
 
 
 
@@ -226,4 +226,7 @@ above the diagonal.
 
 
 
-{% include links.md %}
+::::keypoints
+- "Always start by looking at the data"
+- "Always keep track of the metadata"
+::::
