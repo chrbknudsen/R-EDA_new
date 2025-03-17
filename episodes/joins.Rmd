@@ -51,7 +51,7 @@ We can read sheet number 2 from the Excelfile, by giving `read_excel()` a
 second argument, specifying the sheet we want:
 
 ```{r eval = T, echo = F, message=F, warning=F}
-carriers <- read_excel("../data/flightdata.xlsx", sheet = 2)
+carriers <- read_excel("data/flightdata.xlsx", sheet = 2)
 ```
 
 ```{r eval = F}
