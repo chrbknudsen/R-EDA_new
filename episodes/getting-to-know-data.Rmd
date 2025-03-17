@@ -39,7 +39,7 @@ Let us read in the excel spreadsheet we downloaded in preparation, and saved
 in the data folder of our project:
 
 ```{r echo = F}
-flightdata <- read_excel("../data/flightdata.xlsx")
+flightdata <- read_excel("data/flightdata.xlsx")
 ```
 
 
