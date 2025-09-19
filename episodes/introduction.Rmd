@@ -136,7 +136,7 @@ downloaded the data. Move the file to the `data` folder of your project.
 
 If not, you will need to download the data, now:
 ```{r eval = F}
-download.file("https://raw.githubusercontent.com/KUBDatalab/R-EDA/main/data/flightdata.xlsx", 
+download.file("https://raw.githubusercontent.com/KUBDatalab/R-EDA/main/episodes/data/flightdata.xlsx", 
               "data/flightdata.xlsx", mode = "wb")
 ```
 
