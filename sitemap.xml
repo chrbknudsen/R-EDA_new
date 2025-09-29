@@ -10,10 +10,16 @@
     <loc>https://KUBDatalab.github.io/R-EDA_new/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://KUBDatalab.github.io/R-EDA_new/aio.html</loc>
+  </url>
+  <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/boxplots.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/getting-to-know-data.html</loc>
+  </url>
+  <url>
+    <loc>https://KUBDatalab.github.io/R-EDA_new/images.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/index.html</loc>
@@ -28,19 +34,31 @@
     <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/aio.html</loc>
+  </url>
+  <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/boxplots.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/getting-to-know-data.html</loc>
   </url>
   <url>
+    <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/images.html</loc>
+  </url>
+  <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/instructor-notes.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/introduction.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/joins.html</loc>
+  </url>
+  <url>
+    <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/key-points.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/profiles.html</loc>
@@ -55,10 +73,16 @@
     <loc>https://KUBDatalab.github.io/R-EDA_new/instructor/whats-next.html</loc>
   </url>
   <url>
+    <loc>https://KUBDatalab.github.io/R-EDA_new/instructor-notes.html</loc>
+  </url>
+  <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/introduction.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/joins.html</loc>
+  </url>
+  <url>
+    <loc>https://KUBDatalab.github.io/R-EDA_new/key-points.html</loc>
   </url>
   <url>
     <loc>https://KUBDatalab.github.io/R-EDA_new/profiles.html</loc>
