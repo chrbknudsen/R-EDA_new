@@ -361,7 +361,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Before we Start</a></p>
 <hr>
-<p>Last updated on 2025-11-18 |
+<p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-EDA_new/edit/main/episodes/introduction.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -557,7 +557,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-getting-to-know-data"><p>Content from <a href="getting-to-know-data.html">Getting to know the data</a></p>
 <hr>
-<p>Last updated on 2025-11-18 |
+<p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-EDA_new/edit/main/episodes/getting-to-know-data.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
@@ -622,8 +622,8 @@ and saved in the data folder of our project:</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">head</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">head</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">view</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 <p>This dataset is pretty big. It is actually so big, that a
@@ -639,8 +639,8 @@ of the data when we know what we want to do.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">0.005</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">0.005</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">view</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 <p>After taking a quick look at the data, it is time to get some
@@ -745,7 +745,7 @@ variable in the dataset, so let us make one of those:</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">dep_delay</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_histogram</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
@@ -793,8 +793,8 @@ vs. arrival for these flights?</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">.005</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">.005</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span> x <span class="op">=</span> <span class="va">dep_delay</span>, y <span class="op">=</span> <span class="va">arr_delay</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
@@ -825,10 +825,10 @@ values from the dataset:</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">na.omit</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">.0001</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="fu">c</span><span class="op">(</span><span class="va">year</span>, <span class="va">carrier</span>, <span class="va">flight</span>, <span class="va">tailnum</span>, <span class="va">hour</span>, <span class="va">minute</span>, <span class="va">time_hour</span>, <span class="va">origin</span>, <span class="va">dest</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">na.omit</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">.0001</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="fu">c</span><span class="op">(</span><span class="va">year</span>, <span class="va">carrier</span>, <span class="va">flight</span>, <span class="va">tailnum</span>, <span class="va">hour</span>, <span class="va">minute</span>, <span class="va">time_hour</span>, <span class="va">origin</span>, <span class="va">dest</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">plot</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 <p><img src="../fig/getting-to-know-data-rendered-unnamed-chunk-9-1.png" style="display: block; margin: auto;" class="figure">
@@ -857,10 +857,10 @@ correlation between the variables.</p>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">GGally</span><span class="op">)</span></span>
-<span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">.0001</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="fu">c</span><span class="op">(</span><span class="va">year</span>, <span class="va">carrier</span>, <span class="va">flight</span>, <span class="va">tailnum</span>, <span class="va">hour</span>, <span class="va">minute</span>, <span class="va">time_hour</span>, <span class="va">origin</span>, <span class="va">dest</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">na.omit</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">.0001</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="fu">c</span><span class="op">(</span><span class="va">year</span>, <span class="va">carrier</span>, <span class="va">flight</span>, <span class="va">tailnum</span>, <span class="va">hour</span>, <span class="va">minute</span>, <span class="va">time_hour</span>, <span class="va">origin</span>, <span class="va">dest</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">na.omit</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggpairs</span><span class="op">(</span>progress <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre>
 </div>
 <figure><img src="../fig/getting-to-know-data-rendered-unnamed-chunk-11-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>We need to cut down the number of observations again - the
@@ -888,7 +888,7 @@ any links that you are not going to use.
 </div>
 </div></section><section id="aio-summary-statistics"><p>Content from <a href="summary-statistics.html">Exploring with summary statistics</a></p>
 <hr>
-<p>Last updated on 2025-11-18 |
+<p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-EDA_new/edit/main/episodes/summary-statistics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
@@ -938,7 +938,7 @@ missing values:</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>avg_dep_delay <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            med_dep_delay <span class="op">=</span> <span class="fu">median</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            sd_dep_delay <span class="op">=</span> <span class="fu">sd</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
@@ -979,8 +979,8 @@ all airlines:</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">carrier</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">carrier</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>avg_dep_delay <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            med_dep_delay <span class="op">=</span> <span class="fu">median</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            sd_dep_delay <span class="op">=</span> <span class="fu">sd</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
@@ -1018,14 +1018,14 @@ delay. The <code>arrange()</code> function does this:</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">carrier</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">carrier</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>avg_dep_delay <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            med_dep_delay <span class="op">=</span> <span class="fu">median</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            sd_dep_delay <span class="op">=</span> <span class="fu">sd</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            max_dep_delay <span class="op">=</span> <span class="fu">max</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            min_dep_delay <span class="op">=</span> <span class="fu">min</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm  <span class="op">=</span><span class="cn">T</span><span class="op">)</span>,</span>
-<span>            iqr <span class="op">=</span> <span class="fu">IQR</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>            iqr <span class="op">=</span> <span class="fu">IQR</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">avg_dep_delay</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
@@ -1058,14 +1058,14 @@ delay. The <code>arrange()</code> function does this:</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">summary_delays</span> <span class="op">&lt;-</span> <span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">carrier</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">summary_delays</span> <span class="op">&lt;-</span> <span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">carrier</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>avg_dep_delay <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            med_dep_delay <span class="op">=</span> <span class="fu">median</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            sd_dep_delay <span class="op">=</span> <span class="fu">sd</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            max_dep_delay <span class="op">=</span> <span class="fu">max</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
 <span>            min_dep_delay <span class="op">=</span> <span class="fu">min</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm  <span class="op">=</span><span class="cn">T</span><span class="op">)</span>,</span>
-<span>            iqr <span class="op">=</span> <span class="fu">IQR</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>            iqr <span class="op">=</span> <span class="fu">IQR</span><span class="op">(</span><span class="va">dep_delay</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">avg_dep_delay</span><span class="op">)</span></span></code></pre>
 </div>
 <p>Next up - how to figure out the name of the carrier “US”.</p>
@@ -1088,7 +1088,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-joins"><p>Content from <a href="joins.html">Joining data</a></p>
 <hr>
-<p>Last updated on 2025-11-18 |
+<p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-EDA_new/edit/main/episodes/joins.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
@@ -1246,8 +1246,8 @@ NA-values.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">summary_delays</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">summary_delays</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">relocate</span><span class="op">(</span><span class="va">name</span>, .after <span class="op">=</span> <span class="va">carrier</span><span class="op">)</span> </span></code></pre>
 </div>
 <div class="codewrapper">
@@ -1332,8 +1332,8 @@ on the y-axis:</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">summary_delays</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">summary_delays</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">avg_dep_delay</span>, y <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
@@ -1362,7 +1362,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-boxplots"><p>Content from <a href="boxplots.html">Boxplots and linear regressions</a></p>
 <hr>
-<p>Last updated on 2025-11-18 |
+<p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-EDA_new/edit/main/episodes/boxplots.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 115 minutes</p>
@@ -1409,8 +1409,9 @@ of departure delays.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">relocate</span><span class="op">(</span><span class="va">name</span>, .after <span class="op">=</span> <span class="va">carrier</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">relocate</span><span class="op">(</span><span class="va">name</span>, .after <span class="op">=</span> <span class="va">carrier</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">name</span>, y <span class="op">=</span> <span class="va">air_time</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span></span></code></pre>
@@ -1444,9 +1445,10 @@ the flights of the rest of the airlines.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">relocate</span><span class="op">(</span><span class="va">name</span>, .after <span class="op">=</span> <span class="va">carrier</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">filter</span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Hawaiian Airlines Inc."</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">relocate</span><span class="op">(</span><span class="va">name</span>, .after <span class="op">=</span> <span class="va">carrier</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">filter</span><span class="op">(</span><span class="va">name</span> <span class="op">==</span> <span class="st">"Hawaiian Airlines Inc."</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">dest</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
@@ -1470,9 +1472,10 @@ exists in a given column, in this case <code>dest</code>.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">relocate</span><span class="op">(</span><span class="va">name</span>, .after <span class="op">=</span> <span class="va">carrier</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">filter</span><span class="op">(</span><span class="va">dest</span> <span class="op">==</span> <span class="st">"HNL"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span>  </span>
+<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">relocate</span><span class="op">(</span><span class="va">name</span>, .after <span class="op">=</span> <span class="va">carrier</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">filter</span><span class="op">(</span><span class="va">dest</span> <span class="op">==</span> <span class="st">"HNL"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">name</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
@@ -1522,8 +1525,9 @@ something fancy.</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">ggridges</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">flightdata</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">relocate</span><span class="op">(</span><span class="va">name</span>, .after <span class="op">=</span> <span class="va">carrier</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">relocate</span><span class="op">(</span><span class="va">name</span>, .after <span class="op">=</span> <span class="va">carrier</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">air_time</span>, y <span class="op">=</span> <span class="va">name</span>, fill <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_density_ridges</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre>
@@ -1556,15 +1560,15 @@ delayed.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">0.005</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">0.005</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">dep_delay</span>, y <span class="op">=</span> <span class="va">arr_delay</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> </span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">WARNING<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="warning" tabindex="0"><code>Warning: Removed 52 rows containing missing values or values outside the scale range
+<pre class="warning" tabindex="0"><code>Warning: Removed 44 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
 </div>
 <p><img src="../fig/boxplots-rendered-unnamed-chunk-7-1.png" style="display: block; margin: auto;" class="figure">
@@ -1576,8 +1580,8 @@ data.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">0.005</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">flightdata</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">sample_frac</span><span class="op">(</span><span class="fl">0.005</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">dep_delay</span>, y <span class="op">=</span> <span class="va">arr_delay</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span></span></code></pre>
@@ -1770,7 +1774,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-whats-next"><p>Content from <a href="whats-next.html">What is the next step?</a></p>
 <hr>
-<p>Last updated on 2025-11-18 |
+<p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-EDA_new/edit/main/episodes/whats-next.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -1917,8 +1921,8 @@ any links that you are not going to use.
   "url": "https://KUBDatalab.github.io/R-EDA_new/instructor/aio.html",
   "identifier": "https://KUBDatalab.github.io/R-EDA_new/instructor/aio.html",
   "dateCreated": "2024-07-31",
-  "dateModified": "2025-11-18",
-  "datePublished": "2025-11-18"
+  "dateModified": "2025-11-21",
+  "datePublished": "2025-11-21"
 }
 
   </script><script>

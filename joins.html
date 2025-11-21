@@ -318,7 +318,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Joining data</h1>
-        <p>Last updated on 2025-11-18 |
+        <p>Last updated on 2025-11-21 |
 
         <a href="https://github.com/KUBDatalab/R-EDA_new/edit/main/episodes/joins.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -474,8 +474,8 @@ NA-values.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">summary_delays</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">summary_delays</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">relocate</span><span class="op">(</span><span class="va">name</span>, .after <span class="op">=</span> <span class="va">carrier</span><span class="op">)</span> </span></code></pre>
 </div>
 <div class="codewrapper">
@@ -554,8 +554,8 @@ on the y-axis:</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">summary_delays</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">summary_delays</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">carriers</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">avg_dep_delay</span>, y <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
@@ -638,8 +638,8 @@ any links that you are not going to use.
   "url": "https://KUBDatalab.github.io/R-EDA_new/joins.html",
   "identifier": "https://KUBDatalab.github.io/R-EDA_new/joins.html",
   "dateCreated": "2024-07-31",
-  "dateModified": "2025-11-18",
-  "datePublished": "2025-11-18"
+  "dateModified": "2025-11-21",
+  "datePublished": "2025-11-21"
 }
 
   </script><script>
