@@ -19,9 +19,9 @@ Regardless of our curiosity the concepts covered on this site, will be covered.
 
 
 
-> ## Getting Started
->
-> Our teaching is hands-on, so participants are encouraged to use
+## Getting Started
+
+ Our teaching is hands-on, so participants are encouraged to use
 > their own computers to ensure the proper setup of tools for an efficient
 > workflow.
 >
@@ -34,7 +34,7 @@ Regardless of our curiosity the concepts covered on this site, will be covered.
 > RStudio, equivalent to the topics covered in our introductory course,
 > [R for absolute beginners](https://kubdatalab.github.io/beginning-R/).
 > We are going to use the datamanipulation tools from the tidyverse
-> a lot - so please brush up on the pipe %>% if you have forgotten 
+> a lot - so please brush up on the pipe `|>` if you have forgotten 
 > about it.
 > 
 {: .prereq}

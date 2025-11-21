@@ -23,14 +23,14 @@ library(tidyverse)
 library(readxl)
 flightdata <- read_excel("data/flightdata.xlsx", na = "NULL")
 
-summary_delays <- flightdata %>% 
-  group_by(carrier) %>% 
+summary_delays <- flightdata |> 
+  group_by(carrier) |> 
   summarise(avg_dep_delay = mean(dep_delay, na.rm = T),
             med_dep_delay = median(dep_delay, na.rm = T),
             sd_dep_delay = sd(dep_delay, na.rm = T),
             max_dep_delay = max(dep_delay, na.rm = T),
             min_dep_delay = min(dep_delay, na.rm  =T),
-            iqr = IQR(dep_delay, na.rm = T)) %>% 
+            iqr = IQR(dep_delay, na.rm = T)) |> 
   arrange(avg_dep_delay)
   
 ```
@@ -71,7 +71,9 @@ summary_delays
 
 what we would like is something like this:
 ```{r echo = F, message = F, warning=F}
-summary_delays %>% left_join(carriers) %>% relocate(name, .after = carrier)
+summary_delays |> 
+  left_join(carriers) |> 
+  relocate(name, .after = carrier)
 ```
 
 What we want to do is joining the two dataframes, so we enrich the original
@@ -89,8 +91,8 @@ the right dataframe will get NA-values.
 
 Let us do that!
 ```{r}
-summary_delays %>% 
-  left_join(carriers) %>% 
+summary_delays |> 
+  left_join(carriers) |> 
   relocate(name, .after = carrier) 
 ```
 
@@ -133,8 +135,8 @@ We take the summary_delays dataframe, containing the average delays,
 and join it with the data on carrier names. We do not have to specify the column on which we are joining, since there is only one shared column name. We then pipe that result to ggplot, where we specify that we would like the delay to be on the x-axis, and the name of the carrier on the y-axis:
 
 ```{r}
-summary_delays %>% 
-  left_join(carriers) %>% 
+summary_delays |> 
+  left_join(carriers) |> 
   ggplot(mapping = aes(x = avg_dep_delay, y = name)) +
     geom_col()
   
