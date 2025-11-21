@@ -53,8 +53,8 @@ flightdata <- read_excel("data/flightdata.xlsx")
 Always begin by taking a look at your data!
 
 ```{r eval = F}
-flightdata %>% 
-  head() %>% 
+flightdata |> 
+  head() |> 
   view()
 ```
 
@@ -71,8 +71,8 @@ One way of doing that would be to use the function `sample_frac` to return a
 random fraction of the dataset:
 
 ```{r, eval = F }
-flightdata %>% 
-  sample_frac(0.005) %>% 
+flightdata |> 
+  sample_frac(0.005) |> 
   view()
 ```
 
@@ -124,7 +124,7 @@ A histogram is a great way to get a first impression of a particular variable
 in the dataset, so let us make one of those:
 
 ```{r}
-flightdata %>% 
+flightdata |> 
   ggplot(mapping = aes(x = dep_delay)) +
     geom_histogram()
 ```
@@ -156,8 +156,8 @@ What, for example, is the connection between delays of departure vs. arrival for
 flights?
 
 ```{r warning = F}
-flightdata %>% 
-  sample_frac(.005) %>% 
+flightdata |> 
+  sample_frac(.005) |> 
   ggplot(mapping = aes( x = dep_delay, y = arr_delay)) +
   geom_point()
 ```
@@ -187,10 +187,10 @@ subset of the rows, and eliminating some of the columns. To get a better plot
 without a lot of warnings, we also remove missing values from the dataset:
 
 ```{r}
-flightdata %>% 
-  na.omit() %>% 
-  sample_frac(.0001) %>% 
-  select(-c(year, carrier, flight, tailnum, hour, minute, time_hour, origin, dest)) %>% 
+flightdata |> 
+  na.omit() |> 
+  sample_frac(.0001) |> 
+  select(-c(year, carrier, flight, tailnum, hour, minute, time_hour, origin, dest)) |> 
   plot()
 ```
 This gives us a good first indication of how the different variables varies 
@@ -212,10 +212,10 @@ Now we can plot:
 
 ```{r}
 library(GGally)
-flightdata %>% 
-  sample_frac(.0001) %>% 
-  select(-c(year, carrier, flight, tailnum, hour, minute, time_hour, origin, dest)) %>% 
-  na.omit() %>% 
+flightdata |> 
+  sample_frac(.0001) |> 
+  select(-c(year, carrier, flight, tailnum, hour, minute, time_hour, origin, dest)) |> 
+  na.omit() |> 
   ggpairs(progress = F)
 ```
 
