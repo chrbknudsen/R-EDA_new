@@ -27,8 +27,9 @@ departure delays.
 
 
 ``` r
-flightdata %>% 
-  left_join(carriers) %>% relocate(name, .after = carrier) %>% 
+flightdata |> 
+  left_join(carriers) |> 
+  relocate(name, .after = carrier) |> 
   ggplot(mapping = aes(x = name, y = air_time)) + 
   geom_boxplot() + 
   coord_flip()
@@ -64,9 +65,10 @@ the airlines.
 Let us take a look:
 
 ``` r
-flightdata %>% 
-  left_join(carriers) %>% relocate(name, .after = carrier) %>% 
-  filter(name == "Hawaiian Airlines Inc.") %>% 
+flightdata |> 
+  left_join(carriers) |> 
+  relocate(name, .after = carrier) |> 
+  filter(name == "Hawaiian Airlines Inc.") |> 
   count(dest)
 ```
 
@@ -89,9 +91,10 @@ Which airlines flies to Honolulu?
 
 
 ``` r
-flightdata %>% 
-  left_join(carriers) %>% relocate(name, .after = carrier) %>%
-  filter(dest == "HNL") %>% 
+flightdata |>  
+  left_join(carriers) |> 
+  relocate(name, .after = carrier) |> 
+  filter(dest == "HNL") |> 
   count(name)
 ```
 
@@ -135,8 +138,9 @@ Then load the package, and plot the data:
 ``` r
 library(ggridges)
 
-flightdata %>% 
-  left_join(carriers) %>% relocate(name, .after = carrier) %>% 
+flightdata |> 
+  left_join(carriers) |> 
+  relocate(name, .after = carrier) |> 
 ggplot(aes(x = air_time, y = name, fill = name)) +
   geom_density_ridges() +
   theme(legend.position = "none")
@@ -163,14 +167,14 @@ arrival, when we know that the departure was 47 minutes delayed.
 First, the plot:
 
 ``` r
-flightdata %>%
-  sample_frac(0.005) %>% 
+flightdata |> 
+  sample_frac(0.005) |> 
   ggplot(mapping = aes(x = dep_delay, y = arr_delay)) +
   geom_point() 
 ```
 
 ``` warning
-Warning: Removed 52 rows containing missing values or values outside the scale range
+Warning: Removed 49 rows containing missing values or values outside the scale range
 (`geom_point()`).
 ```
 
@@ -181,8 +185,8 @@ should fit a linear line to the data.
 
 
 ``` r
-flightdata %>%
-  sample_frac(0.005) %>% 
+flightdata |> 
+  sample_frac(0.005) |> 
   ggplot(mapping = aes(x = dep_delay, y = arr_delay)) +
   geom_point() +
   geom_smooth(method = "lm")

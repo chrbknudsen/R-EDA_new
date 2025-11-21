@@ -50,8 +50,8 @@ Always begin by taking a look at your data!
 
 
 ``` r
-flightdata %>% 
-  head() %>% 
+flightdata |> 
+  head() |> 
   view()
 ```
 
@@ -69,8 +69,8 @@ random fraction of the dataset:
 
 
 ``` r
-flightdata %>% 
-  sample_frac(0.005) %>% 
+flightdata |> 
+  sample_frac(0.005) |> 
   view()
 ```
 
@@ -167,7 +167,7 @@ in the dataset, so let us make one of those:
 
 
 ``` r
-flightdata %>% 
+flightdata |> 
   ggplot(mapping = aes(x = dep_delay)) +
     geom_histogram()
 ```
@@ -211,8 +211,8 @@ flights?
 
 
 ``` r
-flightdata %>% 
-  sample_frac(.005) %>% 
+flightdata |> 
+  sample_frac(.005) |> 
   ggplot(mapping = aes( x = dep_delay, y = arr_delay)) +
   geom_point()
 ```
@@ -245,10 +245,10 @@ without a lot of warnings, we also remove missing values from the dataset:
 
 
 ``` r
-flightdata %>% 
-  na.omit() %>% 
-  sample_frac(.0001) %>% 
-  select(-c(year, carrier, flight, tailnum, hour, minute, time_hour, origin, dest)) %>% 
+flightdata |> 
+  na.omit() |> 
+  sample_frac(.0001) |> 
+  select(-c(year, carrier, flight, tailnum, hour, minute, time_hour, origin, dest)) |> 
   plot()
 ```
 
@@ -274,10 +274,10 @@ Now we can plot:
 
 ``` r
 library(GGally)
-flightdata %>% 
-  sample_frac(.0001) %>% 
-  select(-c(year, carrier, flight, tailnum, hour, minute, time_hour, origin, dest)) %>% 
-  na.omit() %>% 
+flightdata |> 
+  sample_frac(.0001) |> 
+  select(-c(year, carrier, flight, tailnum, hour, minute, time_hour, origin, dest)) |> 
+  na.omit() |> 
   ggpairs(progress = F)
 ```
 

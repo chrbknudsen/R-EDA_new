@@ -140,8 +140,8 @@ the right dataframe will get NA-values.
 Let us do that!
 
 ``` r
-summary_delays %>% 
-  left_join(carriers) %>% 
+summary_delays |> 
+  left_join(carriers) |> 
   relocate(name, .after = carrier) 
 ```
 
@@ -212,8 +212,8 @@ and join it with the data on carrier names. We do not have to specify the column
 
 
 ``` r
-summary_delays %>% 
-  left_join(carriers) %>% 
+summary_delays |> 
+  left_join(carriers) |> 
   ggplot(mapping = aes(x = avg_dep_delay, y = name)) +
     geom_col()
 ```

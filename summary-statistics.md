@@ -34,7 +34,7 @@ to handle missing values:
 
 
 ``` r
-flightdata %>% 
+flightdata |> 
   summarise(avg_dep_delay = mean(dep_delay, na.rm = T),
             med_dep_delay = median(dep_delay, na.rm = T),
             sd_dep_delay = sd(dep_delay, na.rm = T),
@@ -66,8 +66,8 @@ airlines:
 
 
 ``` r
-flightdata %>% 
-  group_by(carrier) %>% 
+flightdata |> 
+  group_by(carrier) |> 
   summarise(avg_dep_delay = mean(dep_delay, na.rm = T),
             med_dep_delay = median(dep_delay, na.rm = T),
             sd_dep_delay = sd(dep_delay, na.rm = T),
@@ -103,14 +103,14 @@ A second step would be to sort the carriers by the average departure delay. The 
 
 
 ``` r
-flightdata %>% 
-  group_by(carrier) %>% 
+flightdata |> 
+  group_by(carrier) |> 
   summarise(avg_dep_delay = mean(dep_delay, na.rm = T),
             med_dep_delay = median(dep_delay, na.rm = T),
             sd_dep_delay = sd(dep_delay, na.rm = T),
             max_dep_delay = max(dep_delay, na.rm = T),
             min_dep_delay = min(dep_delay, na.rm  =T),
-            iqr = IQR(dep_delay, na.rm = T)) %>% 
+            iqr = IQR(dep_delay, na.rm = T)) |> 
   arrange(avg_dep_delay)
 ```
 
@@ -142,14 +142,14 @@ The carrier "US" does best. What carrier is that actually?
 Before doing that, let us save the result in an object:
 
 ``` r
-summary_delays <- flightdata %>% 
-  group_by(carrier) %>% 
+summary_delays <- flightdata |> 
+  group_by(carrier) |> 
   summarise(avg_dep_delay = mean(dep_delay, na.rm = T),
             med_dep_delay = median(dep_delay, na.rm = T),
             sd_dep_delay = sd(dep_delay, na.rm = T),
             max_dep_delay = max(dep_delay, na.rm = T),
             min_dep_delay = min(dep_delay, na.rm  =T),
-            iqr = IQR(dep_delay, na.rm = T)) %>% 
+            iqr = IQR(dep_delay, na.rm = T)) |> 
   arrange(avg_dep_delay)
 ```
 
