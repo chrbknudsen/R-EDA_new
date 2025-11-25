@@ -1,4 +1,4 @@
-name: Kopier fil til gh-pages 
+name: Kopier fil til gh-pages
 
 on:
   workflow_run:
