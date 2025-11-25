@@ -47,7 +47,7 @@ learning in regards to exploratory data analysis:
 
 
 
-
+This site:  https://rstats.wtf/
 
 
 ## Contact us!
